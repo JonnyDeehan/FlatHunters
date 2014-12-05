@@ -17,29 +17,32 @@
 <% 
 Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://localhost:3306/TEST","root","root"); 
 %>
-<div class="container">
-<form role="form">
-<div class="form-group">
-<label for="exampleInputEmail1">Email address</label>
-<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+
+<h1 style="text-align: center">FlatFinders</h1>
+
+<div class="container-fluid">
+<div class="row">
+	<p>Welcome to FlatFinders, where we hope to help you find your home away from home
+	for your years at uni in London.</p>
 </div>
-<div class="form-group">
-<label for="exampleInputPassword1">Password</label>
-<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+<div class="row">
+<div class="col-md-4">
+	<img src="resources/images/flat3.jpg" class="img-rounded">
 </div>
-<div class="form-group">
-<label for="exampleInputFile">File input</label>
-<input type="file" id="exampleInputFile">
-<p class="help-block">Example block-level help text here.</p>
 </div>
-<div class="checkbox">
-<label>
-<input type="checkbox"> Check me out
-</label>
-</div>
-<button type="submit" class="btn btn-default">Submit</button>
-</form>
 </div>
 
+<div>
+To get started, either create an account
+<a href="/FlatHuntersProject/hello">here</a>,
+or start by entering the name of your uni here:
+<form role="form">
+  <div class="form-group">
+    <input type="address" class="form-control" id="uniaddress" placeholder="Enter uni">
+  </div>
+
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
 </body>
 </html>
