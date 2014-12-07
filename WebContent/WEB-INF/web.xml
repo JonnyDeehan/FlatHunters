@@ -8,19 +8,29 @@
   	<servlet-name>ProfileViewController</servlet-name>
   	<servlet-class>servlets.ProfileViewController</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>SearchViewController</servlet-name>
+      <servlet-class>src.SearchViewController</servlet-class>
+   </servlet>
   <servlet-mapping>
   	<servlet-name>LoginViewController</servlet-name>
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+
   	<servlet-name>ProfileViewController</servlet-name>
   	<url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+  	<servlet-name>SearchViewController</servlet-name>
+    <url-pattern>/search</url-pattern>
+
   </servlet-mapping>
   <display-name>FlatHuntersProject</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
-    <welcome-file>home</welcome-file>
+    <welcome-file>search</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
