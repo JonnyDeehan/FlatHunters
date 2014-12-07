@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import src.Session;
+import src.User;
  
 public class LoginViewController extends HttpServlet {
 	private static final long serialVersionUID = -7682619775594735721L;
@@ -31,7 +32,7 @@ public class LoginViewController extends HttpServlet {
 					loadPage(request,response,"login_bad.jsp");
 			break;
 			case REGISTER:
-				Session s=Session.getInstance();
+				User s=Session.getInstance().getUser();
 				s.setAddress(request.getParameter("address_1")+"\n"+
 						request.getParameter("address_2")+"\n"+
 						request.getParameter("address_3")
@@ -73,8 +74,8 @@ public class LoginViewController extends HttpServlet {
 		rd.forward(request, response);
 	}
 	
-	private Session loadSessionFromDB(){
-		Session s=Session.getInstance();
+	private void loadSessionFromDB(){
+		User s=Session.getInstance().getUser();
 		//TODO dummy method.
 		s.setFirstName("Sherlock");
 		s.setLastName("Holmes");
@@ -82,7 +83,8 @@ public class LoginViewController extends HttpServlet {
 		s.setPhoneNumber("000 1234");
 		s.setEmail("s.holmes@gmail.com");
 		s.setAddress("221b Baker St\nLondon\nNW1 6XE");
-		return s;
+		
+		//return Session.getInstance().setUser(s);
 	}
 	private boolean authenticate(String username,String password){
 		//TODO dummy method

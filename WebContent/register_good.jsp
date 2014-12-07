@@ -7,7 +7,7 @@
 </head>
 <body>
 <h3>
-<%= Session.getInstance().getFirstName()%> <%= Session.getInstance().getLastName()%>, welcome to FlatHunter!  <br />
+<%= Session.getInstance().getUser().getFirstName()%> <%= Session.getInstance().getUser().getLastName()%>, welcome to FlatHunter!  <br />
 
 If you're not redirected to your account page within a few seconds, please click <a href="profile">here</a>.
 </h3>

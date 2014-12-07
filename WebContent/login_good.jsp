@@ -7,7 +7,7 @@
 </head>
 <body>
 <h3>
-Welcome back, <%= Session.getInstance().getFirstName() %>! <br />
+Welcome back, <%= Session.getInstance().getUser().getFirstName() %>! <br />
 
 If you're not redirected to your account page within a few seconds, please click <a href="profile">here</a>.
 
