@@ -12,6 +12,7 @@
 <br />
 
 <form action="login" method="GET">
+<input type="hidden" name="caller" value="2">
 
 <h3>First name:<br /></h3>
 <input type="text" name="first_name" />

@@ -8,6 +8,7 @@
 <br />
 
 <form action="login" method="GET">
+<input type="hidden" name="caller" value="1">
 
 <h3>Email:<br /></h3>
 <input type="text" name="email" />

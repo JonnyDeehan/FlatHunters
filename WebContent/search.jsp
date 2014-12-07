@@ -13,7 +13,6 @@
 <title>FlatFinders</title>
 </head>
 <body>
-
 <% 
 Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://localhost:3306/TEST","root","root"); 
 %>
@@ -37,7 +36,8 @@ Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://l
       -->
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login">Login</a></li>
+        <li><a href="login?caller=0&type=login">Login</a></li>
+		<li><a href="login?caller=0&type=register">Register</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -61,7 +61,7 @@ Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://l
 
 <div>
 To get started, either create an account
-<a href="/FlatHuntersProject/hello">here</a>,
+<a href="login">here</a>,
 or start by entering the name of your uni here:
 <form role="form" action="search" method="get">
   <div class="form-group">
