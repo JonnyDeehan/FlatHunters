@@ -36,7 +36,7 @@ public class DBManager {
 	      f1.setAmenity(Flat.ALLOWS_PETS, Flat.YES);
 	      f1.setAmenity(Flat.INCLUDES_BILLS, Flat.YES);
 	      f1.setImageLink("resources/images/flat1.jpg");
-	      
+	
 	      f2.setDescription("Looking for a flatmat who's not incompetent or an imbecile" +
 	      		"...which means most of you needn't bother contacting me. Must be alright with strange habits of a sociopathic individual.");
 	      f2.setAmenity(Flat.ALLOWS_SMOKING, Flat.NO);
@@ -53,6 +53,7 @@ public class DBManager {
 		  flatTable.put(f3.getId(),f3);
 		  
 	  }
+	  
 	  
 	  public HashMap<Integer, Flat> getFlatTable(){
 		  return flatTable;

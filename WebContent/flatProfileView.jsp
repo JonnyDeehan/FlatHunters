@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-    <%@ page import="java.util.*, src.Flat"%>
+    <%@ page import="java.util.*, src.Flat, src.Session"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,14 +31,24 @@
       </form>
       -->
       
+      <% if(Session.hasSession()){ %>
+    	<ul class="nav navbar-nav navbar-right">
+          <li><a href="profile">My Account</a></li>
+        </ul>
+      <%
+      }
+      else{
+      %>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login">Login</a></li>
+        <li><a href="login?caller=0&type=login">Login</a></li>
+		<li><a href="login?caller=0&type=register">Register</a></li>
       </ul>
+      <%} %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
-<!--  PAGE CODE -->
+<!--  PAGE CODE  -->
 
 
 <% Flat f = (Flat) request.getAttribute("flat"); %>
@@ -47,6 +57,7 @@
 <div class="row text-center">
 <img src=<%=f.getImageLink()%> class="img-rounded"><br>
 </div>
+
 
 <div>
 <b>Address: </b><%= f.getAddress() %><br></a>

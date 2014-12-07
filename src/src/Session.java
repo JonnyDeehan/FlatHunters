@@ -14,7 +14,10 @@ public class Session{
     	instance=new Session();
     return instance;
   }
-  
+  public static boolean hasSession(){
+	  return instance != null;
+  }
+
   public void setUser(User u){
 	  this.user=u;
   }

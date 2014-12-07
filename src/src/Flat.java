@@ -22,6 +22,8 @@ public class Flat {
 	private HashMap<String, String> amenities;
 	private String imageLink;
 	private int flatId;
+	private ArrayList<Review> reviewList;
+	private int rating;
 	
 	public Flat(String own){
 		flatId = flatIdCount;
@@ -31,6 +33,8 @@ public class Flat {
 		description = "";
 		amenities = new HashMap<String, String>();
 		imageLink = "";
+		reviewList = new ArrayList<Review>();
+		rating = -1;
 		
 		flatIdCount++;
 	}
@@ -43,6 +47,8 @@ public class Flat {
 		description = "";
 		amenities = new HashMap<String, String>();
 		imageLink = "";
+		reviewList = new ArrayList<Review>();
+		rating = -1;
 		
 		flatIdCount++;
 	}
@@ -101,6 +107,20 @@ public class Flat {
 	public void setImageLink(String il){
 		imageLink = il;
 	}
+	
+	public void addReview(Review r){
+		rating = (rating*reviewList.size() + r.getRating())/(reviewList.size()+1);
+		reviewList.add(r);
+	}
+	
+	public ArrayList<Review> getReviewList(){
+		return reviewList;
+	}
+	
+	public int getRating(){
+		return rating;
+	}
+
 	
 	
 }

@@ -25,7 +25,6 @@ public class LoginViewController extends HttpServlet {
 		switch(caller){
 			case LOGIN:
 				if(authenticate(request.getParameter("email"),request.getParameter("password"))){
-					Session ssn=loadSessionFromDB();
 					loadPage(request,response,"login_good.jsp");
 				}
 				else

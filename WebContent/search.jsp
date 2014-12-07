@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ page import="java.sql.*" %>
-<%@ page import="src.DBUtil" %>
+<%@ page import="src.DBUtil, src.Session" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -35,13 +35,24 @@ Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://l
       </form>
       -->
       
+      <% if(Session.hasSession()){ %>
+    	<ul class="nav navbar-nav navbar-right">
+          <li><a href="profile">My Account</a></li>
+        </ul>
+      <%
+      }
+      else{
+      %>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="login?caller=0&type=login">Login</a></li>
 		<li><a href="login?caller=0&type=register">Register</a></li>
       </ul>
+      <%} %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<!--  PAGE CODE  -->
 
 <h1 style="text-align: center">FlatFinders</h1>
 
