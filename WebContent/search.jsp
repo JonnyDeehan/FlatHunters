@@ -17,6 +17,31 @@
 <% 
 Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://localhost:3306/TEST","root","root"); 
 %>
+<!--  NAVIGATION BAR -->
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+  
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="search">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="search?full=true">Search</a></li>
+      </ul>
+      <!-- 
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      -->
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="login">Login</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <h1 style="text-align: center">FlatFinders</h1>
 
@@ -27,7 +52,9 @@ Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://l
 </div>
 <div class="row">
 <div class="span4">
-	<img src="resources/images/flat3.jpg" class="img-rounded">
+<div class="row text-center">
+  <img src="resources/images/flat3.jpg" class="img-rounded">
+</div>
 </div>
 </div>
 </div>

@@ -9,6 +9,7 @@ public class Flat {
 	public static final String ALLOWS_PETS = "Allows pets";
 	public static final String ALLOWS_CHILDREN = "Allows children";
 	public static final String ALLOWS_SMOKING = "Allows smoking";
+	public static int flatIdCount = 0;
 	
 	public static final String UNDEFINED = "undefined";
 	public static final String YES = "yes";
@@ -20,23 +21,33 @@ public class Flat {
 	private String description;
 	private HashMap<String, String> amenities;
 	private String imageLink;
+	private int flatId;
 	
 	public Flat(String own){
+		flatId = flatIdCount;
 		price = -1;
 		address = "";
 		owner = own;
 		description = "";
 		amenities = new HashMap<String, String>();
 		imageLink = "";
+		
+		flatIdCount++;
 	}
 	
 	public Flat(String own, int p, String addr){
+		flatId = flatIdCount;
 		price = p;
 		address = addr;
 		owner = own;
 		description = "";
 		amenities = new HashMap<String, String>();
 		imageLink = "";
+		
+		flatIdCount++;
+	}
+	public int getId(){
+		return flatId;
 	}
 	
 	public int getPrice(){

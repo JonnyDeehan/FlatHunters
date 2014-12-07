@@ -1,10 +1,13 @@
-package src;
+package servlets;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
+
+import src.Flat;
+import src.DBManager;
  
 public class SearchViewController extends HttpServlet {
    @Override
@@ -39,31 +42,8 @@ public class SearchViewController extends HttpServlet {
       
       /**** Dummy values ****/
       
-      ArrayList<Flat> flatList = new ArrayList<Flat>();
-      Flat f1 = new Flat("Margaret Thatcher", 1000,"412 Camden High Street");
-      Flat f2 = new Flat("Sherlock Holmes", 1200, "221B Baker Street");
-      Flat f3 = new Flat("Scrooge", 1500, "48 Doughty Street");
-      
-      f1.setDescription("Come live in this wonderful place! Near Camden market district," +
-      		"nice quiet neighborhood, right in front of a bus stop. Small room in flat for rent.");
-      f1.setAmenity(Flat.ALLOWS_PETS, Flat.YES);
-      f1.setAmenity(Flat.INCLUDES_BILLS, Flat.YES);
-      f1.setImageLink("resources/images/flat1.jpg");
-      
-      f2.setDescription("Looking for a flatmat who's not incompetent or an imbecile" +
-      		"...which means most of you needn't bother contacting me. Must be alright with strange habits of a sociopathic individual.");
-      f2.setAmenity(Flat.ALLOWS_SMOKING, Flat.NO);
-      f2.setAmenity(Flat.ALLOWS_PETS, Flat.NO);
-      f2.setImageLink("resources/images/flat4.jpg");
-      
-      f3.setAmenity(Flat.ALLOWS_CHILDREN, Flat.NO);
-      f3.setAmenity(Flat.ALLOWS_PETS, Flat.NO);
-      f3.setAmenity(Flat.INCLUDES_BILLS, Flat.NO);
-      f3.setImageLink("resources/images/flat3.jpg");
-      
-      flatList.add(f1);
-	  flatList.add(f2);
-	  flatList.add(f3);
+      DBManager manager = DBManager.getInstance();
+      HashMap<Integer, Flat> flatList = manager.getFlatTable();
 	  
       
       /******* DO WORK ********/
@@ -71,11 +51,16 @@ public class SearchViewController extends HttpServlet {
       
       // Process search if search query is sent
       if(request.getParameter("address") != null){
-    	  System.out.println("it's a submission!");
     	  
     	  RequestDispatcher rd = request.getRequestDispatcher("searchResultsView.jsp");
     	   	  
     	  request.setAttribute("search_results", flatList);
+    	  rd.forward(request, response);
+      }
+      // Show the full view of search
+      else if(request.getParameter("full") != null && request.getParameter("full").equals("true")){
+    	  //TODO: create search_full.jsp
+    	  RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
     	  rd.forward(request, response);
       }
       // Default to 'home' search view
@@ -83,10 +68,6 @@ public class SearchViewController extends HttpServlet {
     	  RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
     	  rd.forward(request, response);
       }
-      
-      
-
-      
-		
+	
    }
 }

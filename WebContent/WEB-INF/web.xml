@@ -9,8 +9,12 @@
   	<servlet-class>servlets.ProfileViewController</servlet-class>
   </servlet>
   <servlet>
-      <servlet-name>SearchViewController</servlet-name>
-      <servlet-class>src.SearchViewController</servlet-class>
+    <servlet-name>SearchViewController</servlet-name>
+    <servlet-class>servlets.SearchViewController</servlet-class>
+   </servlet>
+   <servlet>
+    <servlet-name>FlatViewController</servlet-name>
+    <servlet-class>servlets.FlatViewController</servlet-class>
    </servlet>
   <servlet-mapping>
   	<servlet-name>LoginViewController</servlet-name>
@@ -24,7 +28,10 @@
    <servlet-mapping>
   	<servlet-name>SearchViewController</servlet-name>
     <url-pattern>/search</url-pattern>
-
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FlatViewController</servlet-name>
+    <url-pattern>/flat</url-pattern>
   </servlet-mapping>
   <display-name>FlatHuntersProject</display-name>
   <welcome-file-list>
