@@ -1,15 +1,14 @@
-<%@ page import="src.*" %>
-<%@ page import="java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="src.Session" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<title>Login Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>_account_:edit</title>
 </head>
-<body>
-
 <!--  NAVIGATION BAR -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
@@ -48,21 +47,18 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<h1 align="center">Login Page</h1><br />
-<br />
 
-<form align="center" action="login" method="GET">
+<body>
+<h1 align="center">Edit account information</h1>
+<form action="account" align="center" method="GET">
 <input type="hidden" name="caller" value="1">
-
-<h3>Email:<br /></h3>
-<input type="text" name="email" />
-
-<h3>Password:<br /></h3>
-<input type="password" name="password" />
-<br />
-<br />
-<input type="submit" value="Login" />
-
+<h3>Name:</h3>    	  <input type="text" name="first_name" size="25" value="<%= Session.getInstance().getUser().getFirstName()   %>"><br />
+<h3>Surname:</h3> 	  <input type="text" name="last_name" size="25" value="<%= Session.getInstance().getUser().getLastName()    %>"><br />
+<h3>Email:</h3>   	  <input type="text" name="email" size="25" value="<%= Session.getInstance().getUser().getEmail()       %>"><br />
+<h3>Password:</h3>     <input type="text" name="password" size="25" value="<%= Session.getInstance().getUser().getPassword()    %>"><br />
+<h3>Phone number:</h3> <input type="text" name="phone" size="25" value="<%= Session.getInstance().getUser().getPhoneNumber() %>"><br />
+<h3>Address:</h3>      <input type="text" name="address" size="25" value="<%= Session.getInstance().getUser().getAddress()     %>"><br />
+<input type="submit" value="Submit" />
 </form>
 </body>
 </html>

@@ -11,7 +11,7 @@ public class ProfileViewController extends HttpServlet {
 @Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		   throws IOException, ServletException {
-		
+	loadPage(request,response,"profile_view.jsp");
    }
 
 @Override

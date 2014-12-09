@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ page import="java.sql.*" %>
-<%@ page import="src.DBUtil" %>
+<%@ page import="src.*" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,12 +19,15 @@ Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://l
 <!--  NAVIGATION BAR -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-  
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="search">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="search?full=true">Search</a></li>
+        <% 
+      	if(Session.getInstance().getUser()!=null)
+      		out.println("<li><a href=\"account\">Account</a></li>");
+      	%>
       </ul>
       <!-- 
       <form class="navbar-form navbar-left" role="search">
@@ -36,13 +39,22 @@ Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://l
       -->
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login?caller=0&type=login">Login</a></li>
-		<li><a href="login?caller=0&type=register">Register</a></li>
+      <% 
+      	if(Session.getInstance().getUser()==null)
+      		out.println("<li><a href=\"login?caller=0&type=login\">Login</a></li>");
+
+      	if(Session.getInstance().getUser()==null)
+      		out.println("<li><a href=\"login?caller=0&type=register\">Register</a></li>");
+      	
+      	if(Session.getInstance().getUser()!=null)
+      		out.println("<li><a href=\"login?caller=0&type=logout\">Logout</a></li>");
+      %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
+<!-- PAGE CODE -->
 <h1 style="text-align: center">FlatFinders</h1>
 
 <div class="container-fluid">

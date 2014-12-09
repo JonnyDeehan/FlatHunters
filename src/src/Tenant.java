@@ -4,20 +4,26 @@ import java.util.ArrayList;
 
 public class Tenant extends User {
 
-	private ArrayList<Flat> iflats;
+	//contains the flat ids.
+	private ArrayList<Integer> iflats;
 	
-	public Tenant(int id, String first_name, String last_name, String email,
-			String password, String address, String phone,ArrayList<Flat> fl) {
-		super(id, first_name, last_name, email, password, address, phone);
+	public Tenant(String first_name, String last_name, String email,
+			String password, String address, String phone,ArrayList<Integer> fl) {
+		super(first_name, last_name, email, password, address, phone);
 		this.iflats=fl;
 	}
 
+	public Tenant(){
+		super();
+		this.iflats=new ArrayList<Integer>();
+	}
+	
 	public Tenant(Tenant u) {
 		super(u);
 		this.iflats=u.getInterestingFlats();
 	}
 
-	private ArrayList<Flat> getInterestingFlats() {
+	public ArrayList<Integer> getInterestingFlats() {
 		return this.iflats;
 	}
 

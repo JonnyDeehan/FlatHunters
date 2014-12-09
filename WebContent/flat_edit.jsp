@@ -1,15 +1,15 @@
-<%@ page import="src.*" %>
-<%@ page import="java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <%@ page import="java.util.*, src.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<title>Login Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-
 <!--  NAVIGATION BAR -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
@@ -48,21 +48,22 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<h1 align="center">Login Page</h1><br />
-<br />
 
-<form align="center" action="login" method="GET">
-<input type="hidden" name="caller" value="1">
+<!--  PAGE CODE -->
+<%!
+User user=Session.getInstance().getUser();
+boolean landlord=user instanceof Landlord;
+%>
 
-<h3>Email:<br /></h3>
-<input type="text" name="email" />
-
-<h3>Password:<br /></h3>
-<input type="password" name="password" />
-<br />
-<br />
-<input type="submit" value="Login" />
-
+<form align="center" action="account"  method="get">
+<h3>Address: </h3><input type=text size="25" name="address" value="" /><br>
+	<h3>Flat description: </h3> <textarea cols="30" rows="7" name="description"></textarea>
+	<h3>Price: </h3>£<input type=text size="5" name="price" value="" /> per week<br>
+	<b>Amenities included:</b><input name="amenities" type="checkbox" value="included" checked="checked"/><br>
+	<input type="hidden" name="caller" value="4">
+	<input type="submit" name="profile" value="Submit" />
+	
+<!-- TODO add list of amenities and add image upload -->
 </form>
 </body>
 </html>

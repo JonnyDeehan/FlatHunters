@@ -1,8 +1,9 @@
 package src;
 
 public abstract class User {
+	private static int idcount=0;
 	
-	private int id;
+	private int	   id;
 	private String first_name;
 	private String last_name;
 	private String email;
@@ -10,10 +11,21 @@ public abstract class User {
 	private String address;
 	private String phone;
 	
-	protected User(int id,String first_name,String last_name,
+	
+	protected User(){
+		this.id=generateId();
+		this.first_name="";
+		this.last_name="";
+		this.email="";
+		this.password="";
+		this.address="";
+		this.phone="";
+	}
+	
+	protected User(String first_name,String last_name,
 			String email,String password,String address,String phone){
 		
-		this.id=id;
+		this.id=generateId();
 		this.first_name=first_name;
 		this.last_name=last_name;
 		this.email=email;
@@ -23,7 +35,7 @@ public abstract class User {
 	}
 	
 	protected User(User u){
-		this.id=u.getId();
+		this.id=generateId();
 		this.first_name=u.getFirstName();
 		this.last_name=u.getLastName();
 		this.email=u.getEmail();
@@ -32,12 +44,13 @@ public abstract class User {
 		this.phone=u.getPhoneNumber();
 	}
 	
+	private int generateId(){
+		int x=User.idcount;
+		User.idcount++;
+		return x;
+	}
 	public int getId(){
 		return this.id;
-	}
-	
-	public void setId(int id){
-		this.id=id;
 	}
 	
 	public void setFirstName(String fn){

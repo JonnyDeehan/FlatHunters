@@ -8,9 +8,15 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registration</title>
+<title>_account_</title>
 </head>
 <body>
+<%!
+User user=Session.getInstance().getUser();
+boolean landlord=user instanceof Landlord;
+ArrayList<Integer> fids;
+HashMap<Integer,Flat> flat_table=DBManager.getInstance().getFlatTable();
+%>
 <!--  NAVIGATION BAR -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
@@ -50,45 +56,71 @@
 </nav>
 
 
-<h1 align="center">Register</h1><br />
-<br />
+<!--  PAGE CODE -->
+<h1 align="center"><%= Session.getInstance().getUser().getFirstName()   %>'s account page.</h1>
+Account #<%= Session.getInstance().getUser().getId()   %>.<br /><br />
 
-<form align="center" action="login" method="GET">
-<input type="hidden" name="caller" value="2">
+<table border="0">
+<tr>
+<td width="30%">
+	<form action="account" method="GET">
+	<input type="hidden" name="caller" value="0">
+	<h3>Name:</h3>    	  <%= user.getFirstName()   %><br />
+	<br />
+	<h3>Surname:</h3> 	  <%= user.getLastName()    %><br />
+	<br />
+	<h3>Email:</h3>   	  <%= user.getEmail()       %><br />
+	<br />
+	<h3>Password:</h3>     <%= user.getPassword()    %><br />
+	<br />
+	<h3>Phone number:</h3> <%= user.getPhoneNumber() %><br />
+	<br />
+	<h3>Address:</h3>      <%= user.getAddress()     %><br />
+	<br />
+	<br />
+	<input type="submit" name="edit" 	value="Edit values" />
+	<input type="submit" name="profile" value="Public profile" />
+	<% 
+		if(landlord)
+			out.println("<input type=\"submit\" name=\"add\" value=\"Add a flat\" />");
+	%>
+	</form>
+</td>
+<td width="70%">
+<h2>
+<%
+if(landlord){
+	out.println("Your flats:<br />");
+	fids=((Landlord)user).getFlatList();
+}
+else{
+	out.println("Insteresting flats:<br />");
+	fids=((Tenant)user).getInterestingFlats();
+}
+%>
+</h2>
+<%
+for(Integer i:fids){
+	
+	Flat f=flat_table.get(i);
+	if(f==null)
+		continue;
+	out.println("<br /><hr><br />");
+	out.println(f.toHTML());
+	out.println(
+			"<a href=\"flat?id="+i+"\">Click to view the details.</a>"+
+			"<form align=\"right\" action=\"account\" method=\"GET\">"+
+			"<input type=\"hidden\" name=\"caller\" value=\"3\" />"+
+			"<input type=\"hidden\" name=\"flat_id\" value=\""+i+"\" />"+
+			"<input type=\"submit\" name=\"remove\" value=\"Remove\" />"+
+			"</form>"
+			);
+	
+}
 
-<h3>First name:<br /></h3>
-<input type="text" name="first_name" />
-
-<h3>Last name:<br /></h3>
-<input type="text" name="last_name" />
-
-<h3>Email:<br /></h3>
-<input type="text" name="email" />
-
-<h3>Password:<br /></h3>
-<input type="password" name="password" />
-
-<h3>Confirm Password:<br /></h3>
-<input type="password" name="password_2" />
-
-<h3>Mobile number:<br /></h3>
-<input type="text" name="password" />
-
-<h3>Address:<br /></h3>
-<input type="text" name="address" /><br />
-
-<fieldset>
-  <legend>Type of account:</legend>
-  <select name="type" >
-   <option value="tenant">Tenant account</option>
-   <option value="landlord">Landlord account</option>
-  </select>
- </fieldset>
-
-<br />
-<br />
-<input type="submit" value="Create account" />
-
-</form>
+%>
+</td>
+</tr>
+</table>
 </body>
 </html>
