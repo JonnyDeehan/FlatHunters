@@ -6,10 +6,11 @@ public class Tenant extends User {
 
 	private ArrayList<Flat> iflats;
 	
-	public Tenant(int id, String first_name, String last_name, String email,
-			String password, String address, String phone,ArrayList<Flat> fl) {
-		super(id, first_name, last_name, email, password, address, phone);
-		this.iflats=fl;
+	public Tenant(String first_name, String last_name, String email,
+			String password, String address, String phone) {
+		super(first_name, last_name, email, password, address, phone);
+		this.iflats=new ArrayList<Flat>();
+		
 	}
 
 	public Tenant(Tenant u) {

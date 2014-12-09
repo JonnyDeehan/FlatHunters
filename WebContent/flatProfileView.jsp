@@ -61,7 +61,7 @@
 
 <div>
 <b>Address: </b><%= f.getAddress() %><br></a>
-	<b>Property owner: </b> <a href="/FlatHuntersProject/profile/userId=<%=f.getOwner() %>"></a> <%= f.getOwner() %><br>
+	<b>Property owner: </b> <a href="/FlatHuntersProject/profile?userId=<%=f.getOwner().getId()%>"> <%= f.getOwner().getFirstName()%> <%= f.getOwner().getLastName()%></a><br>
 	<b>Flat description: </b> <%= f.getDescription() %><br>
 	<b>Price: </b> £<%= f.getPrice() %> per week<br>
 	<b>Amenities included: </b><br>

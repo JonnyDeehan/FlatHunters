@@ -9,27 +9,32 @@ public abstract class User {
 	private String password;
 	private String address;
 	private String phone;
+	private Profile profile;
+	private static int userIdCount = 0;
 	
-	protected User(int id,String first_name,String last_name,
+	protected User(String first_name,String last_name,
 			String email,String password,String address,String phone){
 		
-		this.id=id;
+		this.id=userIdCount;
 		this.first_name=first_name;
 		this.last_name=last_name;
 		this.email=email;
 		this.password=password;
 		this.address=address;
 		this.phone=phone;
+		this.id = userIdCount;
+		userIdCount++;
 	}
 	
 	protected User(User u){
-		this.id=u.getId();
+		this.id=userIdCount;
 		this.first_name=u.getFirstName();
 		this.last_name=u.getLastName();
 		this.email=u.getEmail();
 		this.password=u.getPassword();
 		this.address=u.getAddress();
 		this.phone=u.getPhoneNumber();
+		userIdCount++;
 	}
 	
 	public int getId(){
@@ -86,5 +91,13 @@ public abstract class User {
 	
 	public String getAddress(){
 		return this.address;
+	}
+	
+	public void setProfile(Profile p){
+		profile = p;
+	}
+	
+	public Profile getProfile(){
+		return profile;
 	}
 }

@@ -6,10 +6,10 @@ public class Landlord extends User {
 
 	private ArrayList<Flat> flats;
 	
-	public Landlord(int id, String first_name, String last_name, String email,
-			String password, String address, String phone,ArrayList<Flat> flats) {
-		super(id, first_name, last_name, email, password, address, phone);
-		this.flats=new ArrayList<Flat>(flats);
+	public Landlord(String first_name, String last_name, String email,
+			String password, String address, String phone) {
+		super(first_name, last_name, email, password, address, phone);
+		this.flats=new ArrayList<Flat>();
 	}
 
 	public Landlord(Landlord l) {

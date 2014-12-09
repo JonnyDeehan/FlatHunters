@@ -17,7 +17,7 @@ public class Flat {
 	
 	private int price;
 	private String address;
-	private String owner;
+	private Landlord owner;
 	private String description;
 	private HashMap<String, String> amenities;
 	private String imageLink;
@@ -25,7 +25,7 @@ public class Flat {
 	private ArrayList<Review> reviewList;
 	private int rating;
 	
-	public Flat(String own){
+	public Flat(Landlord own){
 		flatId = flatIdCount;
 		price = -1;
 		address = "";
@@ -39,7 +39,7 @@ public class Flat {
 		flatIdCount++;
 	}
 	
-	public Flat(String own, int p, String addr){
+	public Flat(Landlord own, int p, String addr){
 		flatId = flatIdCount;
 		price = p;
 		address = addr;
@@ -72,11 +72,11 @@ public class Flat {
 		address = addr;
 	}
 	
-	public String getOwner(){
+	public Landlord getOwner(){
 		return owner;
 	}
 	
-	public void setOwner(String own){
+	public void setOwner(Landlord own){
 		owner = own;
 	}
 	
