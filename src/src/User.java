@@ -1,8 +1,7 @@
 package src;
 
 public abstract class User {
-	private static int idcount=0;
-	
+
 	private int	   id;
 	private String first_name;
 	private String last_name;
@@ -10,38 +9,43 @@ public abstract class User {
 	private String password;
 	private String address;
 	private String phone;
-	
+	private Profile profile;
+	private static int userIdCount = 0;
+
 	
 	protected User(){
-		this.id=generateId();
+		this.id=userIdCount;
 		this.first_name="";
 		this.last_name="";
 		this.email="";
 		this.password="";
 		this.address="";
 		this.phone="";
+		userIdCount++;
 	}
-	
+
 	protected User(String first_name,String last_name,
 			String email,String password,String address,String phone){
 		
-		this.id=generateId();
+		this.id=userIdCount;
 		this.first_name=first_name;
 		this.last_name=last_name;
 		this.email=email;
 		this.password=password;
 		this.address=address;
 		this.phone=phone;
+		userIdCount++;
 	}
 	
 	protected User(User u){
-		this.id=generateId();
+		this.id=userIdCount;
 		this.first_name=u.getFirstName();
 		this.last_name=u.getLastName();
 		this.email=u.getEmail();
 		this.password=u.getPassword();
 		this.address=u.getAddress();
 		this.phone=u.getPhoneNumber();
+		userIdCount++;
 	}
 	
 	private int generateId(){
@@ -99,5 +103,13 @@ public abstract class User {
 	
 	public String getAddress(){
 		return this.address;
+	}
+	
+	public void setProfile(Profile p){
+		profile = p;
+	}
+	
+	public Profile getProfile(){
+		return profile;
 	}
 }

@@ -26,8 +26,8 @@ HashMap<Integer,Flat> flat_table=DBManager.getInstance().getFlatTable();
         <li class="active"><a href="search">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="search?full=true">Search</a></li>
         <% 
-      	if(Session.getInstance().getUser()!=null)
-      		out.println("<li><a href=\"account\">Account</a></li>");
+      	if(Session.hasSession())
+      		out.println("<li><a href=\"account\">My Account</a></li>");
       	%>
       </ul>
       <!-- 
@@ -38,16 +38,13 @@ HashMap<Integer,Flat> flat_table=DBManager.getInstance().getFlatTable();
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       -->
-      
       <ul class="nav navbar-nav navbar-right">
       <% 
-      	if(Session.getInstance().getUser()==null)
+      	if(!Session.hasSession()){
       		out.println("<li><a href=\"login?caller=0&type=login\">Login</a></li>");
-
-      	if(Session.getInstance().getUser()==null)
       		out.println("<li><a href=\"login?caller=0&type=register\">Register</a></li>");
-      	
-      	if(Session.getInstance().getUser()!=null)
+      	}
+      	if(Session.hasSession())
       		out.println("<li><a href=\"login?caller=0&type=logout\">Logout</a></li>");
       %>
       </ul>

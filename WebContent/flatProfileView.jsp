@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-    <%@ page import="java.util.*, src.*"%>
+<%@ page import="java.util.*, src.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +11,6 @@
 <title>Flat Profile</title>
 </head>
 <body>
-
 <!--  NAVIGATION BAR -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
@@ -21,8 +20,8 @@
         <li class="active"><a href="search">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="search?full=true">Search</a></li>
         <% 
-      	if(Session.getInstance().getUser()!=null)
-      		out.println("<li><a href=\"account\">Account</a></li>");
+      	if(Session.hasSession())
+      		out.println("<li><a href=\"account\">My Account</a></li>");
       	%>
       </ul>
       <!-- 
@@ -33,24 +32,19 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       -->
-      
       <ul class="nav navbar-nav navbar-right">
       <% 
-      	if(Session.getInstance().getUser()==null)
+      	if(!Session.hasSession()){
       		out.println("<li><a href=\"login?caller=0&type=login\">Login</a></li>");
-
-      	if(Session.getInstance().getUser()==null)
       		out.println("<li><a href=\"login?caller=0&type=register\">Register</a></li>");
-      	
-      	if(Session.getInstance().getUser()!=null)
+      	}
+      	if(Session.hasSession())
       		out.println("<li><a href=\"login?caller=0&type=logout\">Logout</a></li>");
       %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-
 
 <!--  PAGE CODE -->
 <%!
@@ -64,6 +58,7 @@ boolean landlord=user instanceof Landlord;
 <div class="row text-center">
 <img src=<%=f.getImageLink()%> class="img-rounded"><br>
 </div>
+
 
 <div>
 <b>Address: </b><%= f.getAddress() %><br></a>

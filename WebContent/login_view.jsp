@@ -48,7 +48,8 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<h1 align="center">Login Page</h1><br />
+<!--  PAGE CODE  -->
+<h1>Login Page</h1><br />
 <br />
 
 <form align="center" action="login" method="GET">
