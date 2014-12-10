@@ -47,12 +47,10 @@
 </nav>
 
 <!--  PAGE CODE -->
-<%!
-User user=Session.getInstance().getUser();
-boolean landlord=user instanceof Landlord;
-%>
 
-<% Flat f = (Flat) request.getAttribute("flat"); %>
+<% 
+Flat f = (Flat) request.getAttribute("flat");
+%>
 
 <h1 style="text-align:center"><%=f.getAddress() %></h1>
 <div class="row text-center">
@@ -61,8 +59,11 @@ boolean landlord=user instanceof Landlord;
 
 
 <div>
-<b>Address: </b><%= f.getAddress() %><br></a>
-	<b>Property owner: </b> <a href="/FlatHuntersProject/profile/userId=<%=f.getOwner().getId() %>"><%= f.getOwner().getFirstName() %> <%= f.getOwner().getLastName() %></a><br>
+<b>Overall rating: </b><%= f.getRating() %><br>
+<b>Address: </b><%= f.getAddress() %><br>
+	<b>Property owner: </b> <a href="/FlatHuntersProject/profile?userKey=<%=f.getOwner().getEmail()%>">
+	<%= f.getOwner().getFirstName() %> 
+	<%= f.getOwner().getLastName() %></a><br>
 	<b>Flat description: </b> <%= f.getDescription() %><br>
 	<b>Price: </b> £<%= f.getPrice() %> per week<br>
 	<b>Amenities included: </b><br>
@@ -80,14 +81,34 @@ boolean landlord=user instanceof Landlord;
 
 <%
 	out.println("<form action=\"flat\" align=\"left\" method=\"GET\">");
-	if(!landlord){
-		out.println("<input type=\"submit\" name=\"interested\" 	value=\"I'm interested!\" />");
+	if(Session.hasSession()){
+		User user=Session.getInstance().getUser();
+		boolean landlord=user instanceof Landlord;
+		if(!landlord)
+			out.println("<input type=\"submit\" name=\"interested\" 	value=\"I'm interested!\" />");
 	}
 	out.println("<input type=\"hidden\" name=\"caller\" value=\"0\">"+
-			"<input type=\"hidden\" name=\"flat_id\" value=\""+f.getId()+"\">"+
+			"<input type=\"hidden\" name=\"id\" value=\""+f.getId()+"\">"+
 			"</form>");
+
+	//displaying the reviews
+	for(Review r:f.getReviewList()){
+		out.println(r.toHTML());
+		out.println("<hr>");
+	}
 %>
+
+<h2>Reviews</h2>
+
+<form action="flat" method="get">
+<input type="hidden" name="flatKey" value="<%= f.getId() %>" /><br />
+<input type="hidden" name="caller" value="2" /><br />
+<b>Your Rating</b> <input type="text" size="2" name="rating" /><br />
+<textarea name="review" rows="5" cols="50">Write a review here.</textarea><br />
+Author: <input type="text" size="20" name="author" /><br />
+<input type="submit" name="add" value="Add a Review" /><br />
 </form>
+
 </div>
 </body>
 </html>

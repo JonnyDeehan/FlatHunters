@@ -9,7 +9,7 @@ public abstract class User {
 	private String password;
 	private String address;
 	private String phone;
-	private Profile profile;
+	private String bio;
 	private static int userIdCount = 0;
 
 	
@@ -21,6 +21,7 @@ public abstract class User {
 		this.password="";
 		this.address="";
 		this.phone="";
+		this.bio="";
 		userIdCount++;
 	}
 
@@ -34,6 +35,7 @@ public abstract class User {
 		this.password=password;
 		this.address=address;
 		this.phone=phone;
+		this.bio="";
 		userIdCount++;
 	}
 	
@@ -45,16 +47,20 @@ public abstract class User {
 		this.password=u.getPassword();
 		this.address=u.getAddress();
 		this.phone=u.getPhoneNumber();
+		this.bio=u.getBio();
 		userIdCount++;
 	}
 	
-	private int generateId(){
-		int x=User.idcount;
-		User.idcount++;
-		return x;
-	}
 	public int getId(){
 		return this.id;
+	}
+	
+	public void setBio(String bio){
+		this.bio=bio;
+	}
+	
+	public String getBio(){
+		return this.bio;
 	}
 	
 	public void setFirstName(String fn){
@@ -103,13 +109,5 @@ public abstract class User {
 	
 	public String getAddress(){
 		return this.address;
-	}
-	
-	public void setProfile(Profile p){
-		profile = p;
-	}
-	
-	public Profile getProfile(){
-		return profile;
 	}
 }

@@ -8,20 +8,21 @@ public class Profile {
 	private String bio;
 	private String email;
 	private String phone;
-
+	private ArrayList<Review> reviews;
 	
 	public Profile(int id) {
 		ownerId = id;
 	}
 	
-	public Profile(int id, String n, String b, String e, String ph){
-		ownerId = id;
-		name = n;
-		bio = b;
-		email = e;
-		phone = ph;
+	public Profile(User u){
+		reviews=DBManager.getInstance().getUserReviewTable().get(u.getEmail());
+		ownerId = u.getId();
+		name = u.getFirstName()+" "+u.getLastName();
+		bio = u.getBio();
+		email = u.getEmail();
+		phone = u.getPhoneNumber();
 	}
-	
+
 	public String getBio(){
 		return bio;
 	}
@@ -41,5 +42,7 @@ public class Profile {
 	public int getOwnerId(){
 		return ownerId;
 	}
-
+	public ArrayList<Review> getReviews(){
+		return this.reviews;
+	}
 }

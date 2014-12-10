@@ -15,6 +15,11 @@ public class Session{
     return instance;
   }
   
+  public static void removeInstance(){
+	  Session.getInstance().user=null;
+	  Session.instance=null;
+  }
+  
   public static boolean hasSession(){
 	  return instance != null;
   }

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<meta HTTP-EQUIV="REFRESH" content="3; url=./">
+<meta HTTP-EQUIV="REFRESH" content="2; url=./">
 <title>Logout</title>
 </head>
 <body>

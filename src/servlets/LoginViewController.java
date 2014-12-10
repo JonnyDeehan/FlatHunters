@@ -70,7 +70,7 @@ public class LoginViewController extends HttpServlet {
 					User nu=Session.getInstance().getUser();
 					utable.put(nu.getEmail(),nu);
 					
-					Session.getInstance().setUser(null);
+					Session.removeInstance();
 					loadPage(request,response,"logout.jsp");
 				}
 			break;

@@ -52,7 +52,7 @@ Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://l
 </nav>
 
 <!-- PAGE CODE -->
-<h1 style="text-align: center">FlatFinders</h1>
+<h1 style="text-align: center">FlatHunters</h1>
 
 <div class="container-fluid">
 <div class="row">

@@ -33,8 +33,8 @@ public class Flat {
 		description = "";
 		amenities = new HashMap<String, String>();
 		imageLink = "";
-		reviewList = new ArrayList<Review>();
 		rating = -1;
+		reviewList=new ArrayList<Review>();
 		
 		flatIdCount++;
 	}
@@ -47,8 +47,8 @@ public class Flat {
 		description = "";
 		amenities = new HashMap<String, String>();
 		imageLink = "";
-		reviewList = new ArrayList<Review>();
 		rating = -1;
+		reviewList=new ArrayList<Review>();
 		
 		flatIdCount++;
 	}

@@ -52,7 +52,8 @@ User user=Session.getInstance().getUser();
 boolean landlord=user instanceof Landlord;
 %>
 
-<form align="center" action="account"  method="get">
+<form align="center" action="account"  method="get" enctype="multipart/form-data">
+<h3>Address: </h3><input type="file" name="image" size="50" /><!-- GET RID OF THIS OF THIS IF WE DON'T IMPLEMENT IMAGE UPLOAD -->
 <h3>Address: </h3><input type=text size="25" name="address" value="" /><br>
 	<h3>Flat description: </h3> <textarea cols="30" rows="7" name="description"></textarea>
 	<h3>Price: </h3>£<input type=text size="5" name="price" value="" /> per week<br>

@@ -11,12 +11,6 @@
 <title>_account_</title>
 </head>
 <body>
-<%!
-User user=Session.getInstance().getUser();
-boolean landlord=user instanceof Landlord;
-ArrayList<Integer> fids;
-HashMap<Integer,Flat> flat_table=DBManager.getInstance().getFlatTable();
-%>
 <!--  NAVIGATION BAR -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
@@ -54,6 +48,12 @@ HashMap<Integer,Flat> flat_table=DBManager.getInstance().getFlatTable();
 
 
 <!--  PAGE CODE -->
+<%
+User user=Session.getInstance().getUser();
+boolean landlord=user instanceof Landlord;
+ArrayList<Integer> fids;
+HashMap<Integer,Flat> flat_table=DBManager.getInstance().getFlatTable();
+%>
 <h1 align="center"><%= Session.getInstance().getUser().getFirstName()   %>'s account page.</h1>
 Account #<%= Session.getInstance().getUser().getId()   %>.<br /><br />
 

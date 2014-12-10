@@ -3,13 +3,17 @@ package src;
 public class Review {
 
 	private int rating;
-	private String subject;
 	private String reviewDescription;
-	private User reviewer; 
+	private String reviewer; 
 	
-	public Review(int rate, String sub, String desc, User rev) {
+	public Review(int rate, String desc, User rev) {
 		rating = rate;
-		subject= sub;
+		reviewDescription = desc;
+		reviewer = rev.getFirstName()+" "+rev.getLastName();
+	}
+	
+	public Review(int rate, String desc, String rev) {
+		rating = rate;
 		reviewDescription = desc;
 		reviewer = rev;
 	}
@@ -22,14 +26,6 @@ public class Review {
 		rating = rate;
 	}
 	
-	public String getSubject(){
-		return subject;
-	}
-	
-	public void setSubject(String sub){
-		subject = sub;
-	}
-	
 	public String getReview(){
 		return reviewDescription;
 	}
@@ -38,12 +34,19 @@ public class Review {
 		reviewDescription = rev;
 	}
 	
-	public User getReviewer(){
+	public String getReviewer(){
 		return reviewer;
 	}
 	
-	public void setReviewer(User rev){
+	public void setReviewer(String rev){
 		reviewer = rev;
 	}
-
+	
+	public String toHTML(){
+		String str=new String();
+		str+="<h3>Rating: "+this.getRating()+"</h3><br />";
+		str+=this.getReview()+"<br />";//£"+this.getPrice()+"<br />";
+		str+="Author: "+this.getReviewer()+"<br />";
+		return str;
+	}
 }

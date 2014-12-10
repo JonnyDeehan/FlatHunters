@@ -38,8 +38,11 @@ public class AccountViewController extends HttpServlet {
 				
 				if(edit!=null)
 					loadPage(request,response,"account_edit.jsp");
-				if(profile!=null)
-					loadPage(request,response,"profile_view.jsp");
+				if(profile!=null){
+					RequestDispatcher rd = request.getRequestDispatcher("profile_view.jsp");
+					request.setAttribute("user",u);
+					rd.forward(request, response);
+				}
 				if(add!=null)
 					loadPage(request,response,"flat_edit.jsp");
 				
@@ -51,6 +54,7 @@ public class AccountViewController extends HttpServlet {
 				u.setPassword( request.getParameter("password"));
 				u.setAddress(  request.getParameter("address"));
 				u.setPhoneNumber(request.getParameter("phone"));
+				u.setBio(	   request.getParameter("bio"));
 				loadPage(request,response,"account_view.jsp");
 			break;
 			case REMOVE:
@@ -61,7 +65,7 @@ public class AccountViewController extends HttpServlet {
 					DBManager.getInstance().getFlatTable().remove(id);
 				//if it's a tenant, remove the flat from the personal list
 				else
-					((Tenant)u).getInterestingFlats().remove(id);
+					removeInterestingFlat((Tenant)u,id);
 				
 				loadPage(request,response,"account_view.jsp");
 			break;
@@ -75,7 +79,8 @@ public class AccountViewController extends HttpServlet {
 				f.setImageLink("resources/images/default.jpg");
 				flatTable.put(f.getId(),f);
 				//TODO add the rest of attributes (amenity and image)
-			
+				//TODO implement image uploading here.
+				uploadImage();
 				loadPage(request,response,"account_view.jsp");
 			break;
 			default:
@@ -84,6 +89,20 @@ public class AccountViewController extends HttpServlet {
 		
 	}
 
+	private void uploadImage(){
+		
+	}
+
+	private void removeInterestingFlat(Tenant u,int id){
+		ArrayList<Integer> iflats=u.getInterestingFlats();
+		
+		for(int i=0;i<iflats.size();i++){
+			if(id==iflats.get(i)){
+				iflats.remove(i);
+				return;
+			}
+		}
+	}
 	private void loadPage(HttpServletRequest request, HttpServletResponse response,String pagename)
 			throws IOException, ServletException {
 		RequestDispatcher rd = request.getRequestDispatcher(pagename);

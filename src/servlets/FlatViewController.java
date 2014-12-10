@@ -9,24 +9,42 @@ import javax.servlet.http.*;
 import src.*;
 
 public class FlatViewController extends HttpServlet {
+	private static final long serialVersionUID = -859047787654753360L;
 	private static final int FLAT=0;
-   @Override
+	private static final int REVIEW=2;
+	@Override
    public void doGet(HttpServletRequest request, HttpServletResponse response)
                throws IOException, ServletException {
       // Set the response message's MIME type
       response.setContentType("text/html;charset=UTF-8");
       // Allocate a output writer to write the response message into the network socket
-      PrintWriter out = response.getWriter();
+      //PrintWriter out = response.getWriter();
       DBManager manager = DBManager.getInstance();
-      User u=Session.getInstance().getUser();
-      boolean landlord=u instanceof Landlord;
+      
       int caller;
       try{
     	  caller=Integer.parseInt(request.getParameter("caller"));
       }catch(Exception exc){
     	  caller=-1;
       }
+      Flat f;
       switch(caller){
+      	  case REVIEW:
+      		int rating=Integer.parseInt(request.getParameter("rating"));
+			String description=request.getParameter("review");
+			String author=request.getParameter("author");
+			Review r=new Review(rating,description,author);
+			int fk =Integer.parseInt(request.getParameter("flatKey"));
+
+
+			DBManager db=DBManager.getInstance();
+			db.getFlatTable().get(fk).addReview(r);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("flatProfileView.jsp");
+			f = DBManager.getInstance().getFlatTable().get(fk);
+			request.setAttribute("flat",f);
+			rd.forward(request, response);
+      	  break;
 	      case FLAT:
 	    	  String p1=request.getParameter("interested");
 	    	  String p2=request.getParameter("account");
@@ -35,23 +53,22 @@ public class FlatViewController extends HttpServlet {
 	    		  loadPage(request,response,"account_view.jsp");
 	    	  
 	    	  if(p1!=null){
-	    		System.out.println("A");
-	    	  	int new_id=Integer.parseInt(request.getParameter("flat_id"));
-	    	  	System.out.println("B");
+	    		User u=Session.getInstance().getUser();
+	    	  	int new_id=Integer.parseInt(request.getParameter("id"));
 	    	  	((Tenant)u).getInterestingFlats().add(new_id);
-	    	  	System.out.println("C");
-	    	  	loadPage(request,response,"flatProfileView.jsp");
-	    	  //TODO try to understand the null pointer exception after
-	    	  //pressing the "I'm interested" button.
+	    	  	f = manager.getFlatTable().get(Integer.parseInt(request.getParameter("id")));
+		    	request.setAttribute("flat", f);
+	    	  	loadPage(request,response,"flat_added.jsp");
 	    	  }
 	      break;
 	      default:
 		      // Process search if search query is sent
 		      if(request.getParameter("id") != null){
-		    	  Flat f = manager.getFlatTable().get(Integer.parseInt(request.getParameter("id")));
+		    	  f = manager.getFlatTable().get(Integer.parseInt(request.getParameter("id")));
 		    	  request.setAttribute("flat", f);
-		    	  RequestDispatcher rd = request.getRequestDispatcher("flatProfileView.jsp");
-		    	  rd.forward(request, response);
+		    	  
+		    	  RequestDispatcher rdd = request.getRequestDispatcher("flatProfileView.jsp");
+		    	  rdd.forward(request, response);
 		      }
 	   }
    }

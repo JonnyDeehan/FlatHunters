@@ -47,33 +47,35 @@
 </nav>
 
 <!--  PAGE CODE  -->
-<% User user = (User) request.getAttribute("user"); 
-	Profile profile = user.getProfile();
+<% 
+	User user=(User)request.getAttribute("user");
+   	Profile profile = new Profile(user);
 %>
 
-<h2 align="center"><%=user.getFirstName()%> <%=user.getLastName()%></h2>
+<h2 align="center"><%=profile.getName()%></h2>
 
 <h2>Personal Information:</h2>
-Bio: <%= profile.getBio() %><br>
-Email: <%=profile.getEmail() %><br>
+
+<b>Bio:</b>   <%= profile.getBio()%><br>
+<b>Email</b> <%= profile.getEmail()%><br>
+<b>Phone</b> <%= profile.getPhone()%><br>
 
 <h2>Reviews</h2>
+<%
+	for(Review r:profile.getReviews()){
+		out.println(r.toHTML());
+		out.println("<hr>");
+	}
+%>
 
-<h2>Flats</h2>
+<form action="profile" method="get">
+<input type="hidden" name="userKey" value="<%= user.getEmail()%>" /><br />
+<input type="hidden" name="caller" value="0" /><br />
+<b>Your Rating</b> <input type="text" size="2" name="rating" /><br />
+<textarea name="review" rows="5" cols="50">Write a review here.</textarea><br />
+Author: <input type="text" size="20" name="author" /><br />
+<input type="submit" name="add" value="Add a Review" /><br />
+</form>
 
 </body>
 </html>
-
-
-<!--
-<tr>
-			<td>
-				<h1>general description</h1>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h1>general description</h1>
-			</td>
-		</tr>
--->

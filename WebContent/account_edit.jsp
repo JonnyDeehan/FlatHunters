@@ -55,6 +55,7 @@
 <h3>Password:</h3>     <input type="text" name="password" size="25" value="<%= Session.getInstance().getUser().getPassword()    %>"><br />
 <h3>Phone number:</h3> <input type="text" name="phone" size="25" value="<%= Session.getInstance().getUser().getPhoneNumber() %>"><br />
 <h3>Address:</h3>      <input type="text" name="address" size="25" value="<%= Session.getInstance().getUser().getAddress()     %>"><br />
+<h3>Biography:</h3>    <textarea name="bio" rows="5" cols="50"><%= Session.getInstance().getUser().getBio()%></textarea><br />
 <input type="submit" value="Submit" />
 </form>
 </body>

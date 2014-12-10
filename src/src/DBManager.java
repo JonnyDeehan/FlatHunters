@@ -9,6 +9,8 @@ public class DBManager {
 	  private HashMap<Integer, Flat> flatTable;
 	  private HashMap<String, User> userTable;
 	  
+	  private HashMap<String,ArrayList<Review>> userReviewTable;
+	  
 	  private DBManager(){
 		  initializeDatabases();
 	  }
@@ -22,8 +24,26 @@ public class DBManager {
 	  private void initializeDatabases(){
 		  initializeUserTable();
 		  initiliazeFlatTable();
+		  initializeUserReviewTable();
 	  }
 	  
+	private void initializeUserReviewTable() {
+		userReviewTable= new HashMap<String,ArrayList<Review>>();
+		
+		  User u1=userTable.get("asd");
+		  User u2=userTable.get("dfg");  
+		  Review r4=new Review(85,"A real gentleman.",u1);
+		  Review r5=new Review(70,"He always answers the phone.",u2);
+		  ArrayList<Review> l3=new ArrayList<Review>();
+		  l3.add(r4);
+		  l3.add(r5);
+		  ArrayList<Review> l4=new ArrayList<Review>();
+		  l4.add(r5);
+		  
+		  userReviewTable.put("asd",l4);
+		  userReviewTable.put("dfg",l3);
+	}
+
 /*	  
 	private void initializeUserTable(){
 		  ArrayList<Integer> f1=new ArrayList<Integer>();
@@ -52,9 +72,9 @@ public class DBManager {
 		  
 		  flatTable = new HashMap<Integer, Flat>();
 		  
-	      Flat f1 = new Flat((Landlord)userTable.get("iamtheking@gmail.com"), 1000,"412 Camden High Street");
-	      Flat f2 = new Flat((Landlord)userTable.get("iamtheking@gmail.com"), 1200, "221B Baker Street");
-	      Flat f3 = new Flat((Landlord)userTable.get("detectiveholmes@gmail.com"), 1500, "48 Doughty Street");
+	      Flat f1 = new Flat(null, 1000,"412 Camden High Street");
+	      Flat f2 = new Flat(null, 1200, "221B Baker Street");
+	      Flat f3 = new Flat(null, 1500, "48 Doughty Street");
 	      
 	      f1.setDescription("Come live in this wonderful place! Near Camden market district," +
 	      		"nice quiet neighborhood, right in front of a bus stop. Small room in flat for rent.");
@@ -73,7 +93,22 @@ public class DBManager {
 	      f3.setAmenity(Flat.INCLUDES_BILLS, Flat.NO);
 	      f3.setImageLink("resources/images/flat3.jpg");
 	      
+		  //assigning owners to flats
+	      f1.setOwner((Landlord)this.userTable.get("dfg"));
+	      f2.setOwner((Landlord)this.userTable.get("dfg"));
+	      f3.setOwner((Landlord)this.userTable.get("dfg"));
 	      
+	      //initializing flat reviews
+	      User u1=userTable.get("asd");
+		  User u2=userTable.get("dfg");
+		  
+		  Review r1=new Review(67,"This flat is quite good.",u1);
+		  Review r2=new Review(1,"Too many mice!",u1);
+		  Review r3=new Review(100,"Gorgeous! Love it. <3",u2);
+		
+		  f1.addReview(r1);
+		  f1.addReview(r3);
+		  f2.addReview(r2);
 	      
 	      flatTable.put(f1.getId(),f1);
 		  flatTable.put(f2.getId(),f2);
@@ -82,7 +117,21 @@ public class DBManager {
 	  
 	  private void initializeUserTable(){
 		  userTable = new HashMap<String, User>();
-		  ArrayList<Integer> f1=new ArrayList<Integer>();
+		  ArrayList<Integer> iflat=new ArrayList<Integer>();
+		  ArrayList<Integer> flat=new ArrayList<Integer>();
+		  
+		  iflat.add(0);
+		  iflat.add(1);
+		  flat.add(0);
+		  flat.add(1);
+		  //                  name surname email  pwd    addr   phone 
+		  Tenant t=new Tenant("AA", "BB", "asd", "asd", "try1", "123",iflat);
+		  Landlord l=new Landlord("CC", "DD", "dfg", "dfg", "try2", "567",flat);
+		  
+		  this.userTable.put(t.getEmail(), t);
+		  this.userTable.put(l.getEmail(), l);
+		  
+		  /*		  ArrayList<Integer> f1=new ArrayList<Integer>();
 		  ArrayList<Integer> f2=new ArrayList<Integer>();
 		  ArrayList<Integer> f3=new ArrayList<Integer>();
 		  ArrayList<Integer> f4=new ArrayList<Integer>();
@@ -116,7 +165,9 @@ public class DBManager {
 		  User u7 = new Tenant("Ash", "Ketchum", "pikachuroks@gmail.com", "pikapika88", "222 Pallet Town", "234-121-4215",empty);
 		  User u8 = new Landlord("Sherlock", "Holmes", "detectiveholmes@gmail.com", "coventry", "221B Baker Street", "352-999-1291",f2);
 		  User u9 = new Landlord("Mary", "Poppins", "poppies@gmail.com", "cats", "Lovers Lane", "325-999-1291",empty);
-		  
+
+
+
 		  String bio0 = "I love acting. :)";
 		  u0.setProfile(new Profile(u0.getId(), u0.getFirstName()+ " " + u0.getLastName(), bio0, u0.getEmail(), u1.getPhoneNumber()));
 		  userTable.put(u0.getEmail(), u0);
@@ -156,7 +207,7 @@ public class DBManager {
 		  String bio9 = "I love acting. :)";
 		  u9.setProfile(new Profile(u9.getId(), u9.getFirstName()+ " " + u9.getLastName(), bio9, u9.getEmail(), u9.getPhoneNumber()));
 		  userTable.put(u9.getEmail(), u9);
-
+*/
 	  }
 	  
 	  public HashMap<Integer, Flat> getFlatTable(){
@@ -167,6 +218,8 @@ public class DBManager {
 		  return userTable;
 	  }
 	  
-	 
+	  public HashMap<String,ArrayList<Review>> getUserReviewTable(){
+		  return this.userReviewTable;
+	  }
 
 }
