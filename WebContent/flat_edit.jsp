@@ -7,7 +7,7 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Add a new flat</title>
 </head>
 <body>
 <!--  NAVIGATION BAR -->
@@ -53,11 +53,16 @@ boolean landlord=user instanceof Landlord;
 %>
 
 <form align="center" action="account"  method="get" enctype="multipart/form-data">
-<h3>Address: </h3><input type="file" name="image" size="50" /><!-- GET RID OF THIS OF THIS IF WE DON'T IMPLEMENT IMAGE UPLOAD -->
+<h3>Image: </h3><input align="center" type="file" name="image" size="20" /><!-- TODO: GET RID OF THIS IF WE DON'T IMPLEMENT IMAGE UPLOAD -->
 <h3>Address: </h3><input type=text size="25" name="address" value="" /><br>
 	<h3>Flat description: </h3> <textarea cols="30" rows="7" name="description"></textarea>
-	<h3>Price: </h3>£<input type=text size="5" name="price" value="" /> per week<br>
-	<b>Amenities included:</b><input name="amenities" type="checkbox" value="included" checked="checked"/><br>
+	<h3>Price: </h3>£<input type=text size="5" name="price" value="0" /> per week<br>
+	<h3>Amenities included:</h3>
+	<b>Bills included:</b><input name="bills" type="checkbox" value="included" 	checked="checked"/><br>
+	<b>Washing Machine:</b><input name="washer" type="checkbox" value="included" checked="checked"/><br>
+	<b>Pets allowed:</b><input name="pets" type="checkbox" value="allowed" 	checked="checked"/><br>
+	<b>Children allowed:</b><input name="children" type="checkbox" value="allowed" checked="checked"/><br>
+	<b>Smoking Allowed:</b><input name="smoking" type="checkbox" value="allowed"  checked="checked"/><br><br>
 	<input type="hidden" name="caller" value="4">
 	<input type="submit" name="profile" value="Submit" />
 	

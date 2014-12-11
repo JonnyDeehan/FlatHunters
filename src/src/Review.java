@@ -46,7 +46,7 @@ public class Review {
 		String str=new String();
 		str+="<h3>Rating: "+this.getRating()+"</h3><br />";
 		str+=this.getReview()+"<br />";//£"+this.getPrice()+"<br />";
-		str+="Author: "+this.getReviewer()+"<br />";
+		str+="<i>Author:</i> "+this.getReviewer()+"<br />";
 		return str;
 	}
 }

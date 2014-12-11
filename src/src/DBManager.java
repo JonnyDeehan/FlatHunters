@@ -30,8 +30,8 @@ public class DBManager {
 	private void initializeUserReviewTable() {
 		userReviewTable= new HashMap<String,ArrayList<Review>>();
 		
-		  User u1=userTable.get("asd");
-		  User u2=userTable.get("dfg");  
+		  User u1=userTable.get("dr.watson@yahoo.com");
+		  User u2=userTable.get("s.holmes@gmail.com");  
 		  Review r4=new Review(85,"A real gentleman.",u1);
 		  Review r5=new Review(70,"He always answers the phone.",u2);
 		  ArrayList<Review> l3=new ArrayList<Review>();
@@ -40,8 +40,8 @@ public class DBManager {
 		  ArrayList<Review> l4=new ArrayList<Review>();
 		  l4.add(r5);
 		  
-		  userReviewTable.put("asd",l4);
-		  userReviewTable.put("dfg",l3);
+		  userReviewTable.put("dr.watson@yahoo.com",l4);
+		  userReviewTable.put("s.holmes@gmail.com",l3);
 	}
 
 /*	  
@@ -78,29 +78,29 @@ public class DBManager {
 	      
 	      f1.setDescription("Come live in this wonderful place! Near Camden market district," +
 	      		"nice quiet neighborhood, right in front of a bus stop. Small room in flat for rent.");
-	      f1.setAmenity(Flat.ALLOWS_PETS, Flat.YES);
-	      f1.setAmenity(Flat.INCLUDES_BILLS, Flat.YES);
+	      f1.setAmenity(Flat.ALLOWS_PETS, true);
+	      f1.setAmenity(Flat.INCLUDES_BILLS, true);
 	      f1.setImageLink("resources/images/flat1.jpg");
 	
 	      f2.setDescription("Looking for a flatmat who's not incompetent or an imbecile" +
 	      		"...which means most of you needn't bother contacting me. Must be alright with strange habits of a sociopathic individual.");
-	      f2.setAmenity(Flat.ALLOWS_SMOKING, Flat.NO);
-	      f2.setAmenity(Flat.ALLOWS_PETS, Flat.NO);
+	      f2.setAmenity(Flat.ALLOWS_SMOKING, false);
+	      f2.setAmenity(Flat.ALLOWS_PETS, false);
 	      f2.setImageLink("resources/images/flat4.jpg");
 	      
-	      f3.setAmenity(Flat.ALLOWS_CHILDREN, Flat.NO);
-	      f3.setAmenity(Flat.ALLOWS_PETS, Flat.NO);
-	      f3.setAmenity(Flat.INCLUDES_BILLS, Flat.NO);
+	      f3.setAmenity(Flat.ALLOWS_CHILDREN, false);
+	      f3.setAmenity(Flat.ALLOWS_PETS, false);
+	      f3.setAmenity(Flat.INCLUDES_BILLS, false);
 	      f3.setImageLink("resources/images/flat3.jpg");
 	      
 		  //assigning owners to flats
-	      f1.setOwner((Landlord)this.userTable.get("dfg"));
-	      f2.setOwner((Landlord)this.userTable.get("dfg"));
-	      f3.setOwner((Landlord)this.userTable.get("dfg"));
+	      f1.setOwner((Landlord)this.userTable.get("s.holmes@gmail.com"));
+	      f2.setOwner((Landlord)this.userTable.get("s.holmes@gmail.com"));
+	      f3.setOwner((Landlord)this.userTable.get("s.holmes@gmail.com"));
 	      
 	      //initializing flat reviews
-	      User u1=userTable.get("asd");
-		  User u2=userTable.get("dfg");
+	      User u1=userTable.get("dr.watson@yahoo.com");
+		  User u2=userTable.get("s.holmes@gmail.com");
 		  
 		  Review r1=new Review(67,"This flat is quite good.",u1);
 		  Review r2=new Review(1,"Too many mice!",u1);
@@ -124,9 +124,10 @@ public class DBManager {
 		  iflat.add(1);
 		  flat.add(0);
 		  flat.add(1);
-		  //                  name surname email  pwd    addr   phone 
-		  Tenant t=new Tenant("AA", "BB", "asd", "asd", "try1", "123",iflat);
-		  Landlord l=new Landlord("CC", "DD", "dfg", "dfg", "try2", "567",flat);
+		  flat.add(2);
+
+		  Tenant t=new Tenant("John", "Watson", "dr.watson@yahoo.com", "secret", "not yet", "020 1234 5678",iflat);
+		  Landlord l=new Landlord("Sherlock", "Holmes", "s.holmes@gmail.com", "elementary", "221b Baker St London W1", "020 0987 6543",flat);
 		  
 		  this.userTable.put(t.getEmail(), t);
 		  this.userTable.put(l.getEmail(), l);

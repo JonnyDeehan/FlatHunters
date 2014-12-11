@@ -73,14 +73,23 @@ public class AccountViewController extends HttpServlet {
 				Map<Integer,Flat> flatTable=DBManager.getInstance().getFlatTable();
 				Flat f=new Flat((Landlord)u);
 				((Landlord)u).getFlatList().add(f.getId());
+				String bills=request.getParameter("bills");
+		    	String children=request.getParameter("children");
+		    	String pets=request.getParameter("pets");
+		    	String smoking=request.getParameter("smoking");
+		    	String washer=request.getParameter("washer");
+		    	
 				f.setAddress(request.getParameter("address"));
 				f.setDescription(request.getParameter("description"));
 				f.setPrice(Integer.parseInt(request.getParameter("price")));
 				f.setImageLink("resources/images/default.jpg");
-				flatTable.put(f.getId(),f);
-				//TODO add the rest of attributes (amenity and image)
-				//TODO implement image uploading here.
+				f.setAmenity(Flat.INCLUDES_BILLS,(bills!=null)?(bills.equals("included")):(false));
+				f.setAmenity(Flat.ALLOWS_CHILDREN, (children!=null)?(children.equals("allowed")):(false));
+				f.setAmenity(Flat.ALLOWS_PETS, (pets!=null)?(pets.equals("allowed")):(false));
+				f.setAmenity(Flat.ALLOWS_SMOKING,(smoking!=null)?(smoking.equals("allowed")):(false));
+				f.setAmenity(Flat.INCLUDES_WASHER_DRYER,(washer!=null)?(washer.equals("included")):(false));
 				uploadImage();
+				flatTable.put(f.getId(),f);
 				loadPage(request,response,"account_view.jsp");
 			break;
 			default:

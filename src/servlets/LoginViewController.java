@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 
 import src.DBManager;
 import src.Landlord;
+import src.Review;
 import src.Session;
 import src.Tenant;
 import src.User;
@@ -40,7 +41,7 @@ public class LoginViewController extends HttpServlet {
 			break;
 			case REGISTER:
 				String type=request.getParameter("type");
-				if(type.equals("Landlord Account"))
+				if(type.equals("landlord"))
 					Session.getInstance().setUser(new Landlord());
 				else
 					Session.getInstance().setUser(new Tenant());
@@ -53,7 +54,7 @@ public class LoginViewController extends HttpServlet {
 				s.setPassword(request.getParameter("password"));
 				s.setPhoneNumber(request.getParameter("password"));
 				
-				//check for duplicates TODO
+				DBManager.getInstance().getUserReviewTable().put(s.getEmail(), new ArrayList<Review>());
 				DBManager.getInstance().getUserTable().put(s.getEmail(),s);
 				
 				loadPage(request,response,"register_good.jsp");
@@ -65,6 +66,7 @@ public class LoginViewController extends HttpServlet {
 				else if(t.equals("register"))
 					loadPage(request,response,"register_view.jsp");
 				else if(t.equals("logout")){
+					
 					//update user information
 					Map<String,User> utable=DBManager.getInstance().getUserTable();
 					User nu=Session.getInstance().getUser();

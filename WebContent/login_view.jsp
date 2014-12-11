@@ -46,7 +46,7 @@
 </nav>
 
 <!--  PAGE CODE  -->
-<h1>Login Page</h1><br />
+<h1 align="center">Login Page</h1><br />
 <br />
 
 <form align="center" action="login" method="GET">

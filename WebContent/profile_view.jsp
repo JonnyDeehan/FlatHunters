@@ -47,7 +47,7 @@
 </nav>
 
 <!--  PAGE CODE  -->
-<% 
+<%
 	User user=(User)request.getAttribute("user");
    	Profile profile = new Profile(user);
 %>
@@ -62,7 +62,10 @@
 
 <h2>Reviews</h2>
 <%
-	for(Review r:profile.getReviews()){
+	ArrayList<Review> rs=profile.getReviews();
+	if(rs==null)
+		System.out.println("problem");
+	for(Review r:rs){
 		out.println(r.toHTML());
 		out.println("<hr>");
 	}
@@ -71,7 +74,7 @@
 <form action="profile" method="get">
 <input type="hidden" name="userKey" value="<%= user.getEmail()%>" /><br />
 <input type="hidden" name="caller" value="0" /><br />
-<b>Your Rating</b> <input type="text" size="2" name="rating" /><br />
+<b>Your Rating</b> <input type="text" size="2" name="rating" value="0"/><br />
 <textarea name="review" rows="5" cols="50">Write a review here.</textarea><br />
 Author: <input type="text" size="20" name="author" /><br />
 <input type="submit" name="add" value="Add a Review" /><br />

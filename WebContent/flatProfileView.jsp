@@ -68,13 +68,11 @@ Flat f = (Flat) request.getAttribute("flat");
 	<b>Price: </b> £<%= f.getPrice() %> per week<br>
 	<b>Amenities included: </b><br>
 <% 
-	HashMap<String, String> amenities = f.getAmenityList();
-	for(String a : amenities.keySet()){
-		if(!amenities.get(a).equals(Flat.UNDEFINED)){
+	boolean[] amenities = f.getAmenities();
+	for(int i=0;i<amenities.length;i++){
 			%>
-			<row><%=a %> : <%=amenities.get(a) %><br>
+			<row><%=f.amenities_name[i] %> : <%=(amenities[i])?("Yes"):("No") %><br>
 			<%
-		}
 	}
 	%>
 	
@@ -103,7 +101,7 @@ Flat f = (Flat) request.getAttribute("flat");
 <form action="flat" method="get">
 <input type="hidden" name="flatKey" value="<%= f.getId() %>" /><br />
 <input type="hidden" name="caller" value="2" /><br />
-<b>Your Rating</b> <input type="text" size="2" name="rating" /><br />
+<b>Your Rating</b> <input type="text" size="2" name="rating" value="0"/><br />
 <textarea name="review" rows="5" cols="50">Write a review here.</textarea><br />
 Author: <input type="text" size="20" name="author" /><br />
 <input type="submit" name="add" value="Add a Review" /><br />

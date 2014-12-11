@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<title>FlatFinders</title>
+<title>FlatHunters</title>
 </head>
 <body>
 <div>
@@ -50,14 +50,12 @@
 
 <!--  PAGE CODE -->
 <h1 style="text-align:center">Flat Listings</h1>
-<% HashMap<Integer, Flat> flatList = (HashMap<Integer, Flat>) request.getAttribute("search_results"); %>
+<% ArrayList<Flat> flatList = (ArrayList<Flat>) request.getAttribute("search_results"); %>
 We found <b><%= flatList.size() %> </b> flats in this area!
 
 <table class="table table-striped">
-<% for(int k : flatList.keySet()){
-	Flat f = flatList.get(k);
+<% for(Flat f : flatList){
 	%>
-	
 	<tr>
 	<div class="row">
 	<td>

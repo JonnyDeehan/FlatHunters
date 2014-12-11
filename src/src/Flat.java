@@ -4,26 +4,27 @@ import java.util.*;
 
 public class Flat {
 	
-	public static final String INCLUDES_BILLS = "Includes bills";
-	public static final String INCLUDES_WASHER_DRYER = "Includes w/d";
-	public static final String ALLOWS_PETS = "Allows pets";
-	public static final String ALLOWS_CHILDREN = "Allows children";
-	public static final String ALLOWS_SMOKING = "Allows smoking";
-	public static int flatIdCount = 0;
+	public static final int INCLUDES_BILLS 			= 0;
+	public static final int INCLUDES_WASHER_DRYER 	= 1;
+	public static final int ALLOWS_PETS 			= 2;
+	public static final int ALLOWS_CHILDREN 		= 3;
+	public static final int ALLOWS_SMOKING 			= 4;
+	public static final String[] amenities_name = {
+			"Bills included","Washer dryer","Pets allowed","Children allowed","Smoking allowed"
+	};
 	
-	public static final String UNDEFINED = "undefined";
-	public static final String YES = "yes";
-	public static final String NO = "no";
+	public static int flatIdCount = 0;
 	
 	private int price;
 	private String address;
 	private Landlord owner;
 	private String description;
-	private HashMap<String, String> amenities;
+	private boolean[] amenities;
 	private String imageLink;
 	private int flatId;
 	private ArrayList<Review> reviewList;
 	private int rating;
+	
 	
 	public Flat(Landlord own){
 		flatId = flatIdCount;
@@ -31,10 +32,13 @@ public class Flat {
 		address = "";
 		owner = own;
 		description = "";
-		amenities = new HashMap<String, String>();
+		amenities=new boolean[5];
 		imageLink = "";
 		rating = -1;
 		reviewList=new ArrayList<Review>();
+		
+		for(int i=0;i<amenities.length;i++)
+			amenities[i]=false;
 		
 		flatIdCount++;
 	}
@@ -45,11 +49,14 @@ public class Flat {
 		address = addr;
 		owner = own;
 		description = "";
-		amenities = new HashMap<String, String>();
+		amenities=new boolean[5];
 		imageLink = "";
 		rating = -1;
 		reviewList=new ArrayList<Review>();
 		
+		for(int i=0;i<amenities.length;i++)
+			amenities[i]=false;
+			
 		flatIdCount++;
 	}
 	public int getId(){
@@ -88,16 +95,21 @@ public class Flat {
 		description = desc;
 	}
 	
-	public String getAmenity(String a){
-		return amenities.get(a);
+	public void setAmenity(int i,boolean a){
+		this.amenities[i]=a;
 	}
 	
-	public HashMap<String, String> getAmenityList(){
-		return amenities;
+	public boolean hasAmenity(int i){
+		return this.amenities[i];
 	}
 	
-	public void setAmenity(String k, String v){
-		amenities.put(k, v);
+	public void setAminities(boolean[] a){
+		for(int i=0;i<amenities.length;i++)
+			amenities[i]=a[i];		
+	}
+	
+	public boolean[] getAmenities(){
+		return this.amenities;
 	}
 	
 	public String getImageLink(){

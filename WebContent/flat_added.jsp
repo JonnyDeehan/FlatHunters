@@ -9,7 +9,7 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <meta HTTP-EQUIV="REFRESH" content="2; url=flat?id=<%= f.getId()%>">
-<title>Welcome!</title>
+<title>Flat Added</title>
 </head>
 <body>
 <h3>

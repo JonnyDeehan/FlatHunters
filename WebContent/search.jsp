@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<title>FlatFinders</title>
+<title>FlatHunters</title>
 </head>
 <body>
 <% 
@@ -56,8 +56,8 @@ Connection cnt = DBUtil.createConnection("com.mysql.jdbc.Driver","jdbc:mysql://l
 
 <div class="container-fluid">
 <div class="row">
-	<p>Welcome to FlatFinders, where we hope to help you find your home away from home
-	for your years at uni in London.</p>
+	<h4 align="center">Welcome to FlatHunters, where we hope to help you find your home away from home
+	for your years at uni in London.</h4>
 </div>
 <div class="row">
 <div class="span4">
@@ -75,9 +75,19 @@ or start by entering the name of your uni here:
 <form role="form" action="search" method="get">
   <div class="form-group">
     
-    <input type="address" class="form-control" name="address" placeholder="Enter uni">
+    <input type="address" class="form-control" name="address" placeholder="Enter address here">
   </div>
 
+<%	if(request.getParameter("full") != null && request.getParameter("full").equals("true")){ %>
+	<input name="caller" type="hidden" value="0"/><br>
+	<b>Minimum rating:</b><input name="rating" type="text" value="0" size="2"/><br>
+	<b>Price range: from </b><input name="min" type="text" value="0" size="5"/> to <input name="max" type="text" value="5000" size="5"/>per week.<br>
+	<b>Bills included:</b><input name="bills" type="checkbox" value="included" 	checked="checked"/><br>
+	<b>Washing Machine:</b><input name="washer" type="checkbox" value="included" checked="checked"/><br>
+	<b>Pets allowed:</b><input name="pets" type="checkbox" value="allowed" 	checked="checked"/><br>
+	<b>Children allowed:</b><input name="children" type="checkbox" value="allowed" checked="checked"/><br>
+	<b>Smoking Allowed:</b><input name="smoking" type="checkbox" value="allowed"  checked="checked"/><br><br>
+<%}%>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
 </div>
