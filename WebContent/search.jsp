@@ -80,7 +80,7 @@ or start by entering the name of your uni here:
 
 <%	if(request.getParameter("full") != null && request.getParameter("full").equals("true")){ %>
 	<input name="caller" type="hidden" value="0"/><br>
-	<b>Minimum rating:</b><input name="rating" type="text" value="0" size="2"/><br>
+	<b>Minimum rating:</b><input name="rating" type="text" value="-1" size="2"/><br>
 	<b>Price range: from </b><input name="min" type="text" value="0" size="5"/> to <input name="max" type="text" value="5000" size="5"/>per week.<br>
 	<b>Bills included:</b><input name="bills" type="checkbox" value="included" 	checked="checked"/><br>
 	<b>Washing Machine:</b><input name="washer" type="checkbox" value="included" checked="checked"/><br>

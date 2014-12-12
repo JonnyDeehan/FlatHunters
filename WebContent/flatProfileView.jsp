@@ -75,7 +75,8 @@ Flat f = (Flat) request.getAttribute("flat");
 			<%
 	}
 	%>
-	
+
+<h2>Reviews</h2>
 
 <%
 	out.println("<form action=\"flat\" align=\"left\" method=\"GET\">");
@@ -95,8 +96,6 @@ Flat f = (Flat) request.getAttribute("flat");
 		out.println("<hr>");
 	}
 %>
-
-<h2>Reviews</h2>
 
 <form action="flat" method="get">
 <input type="hidden" name="flatKey" value="<%= f.getId() %>" /><br />

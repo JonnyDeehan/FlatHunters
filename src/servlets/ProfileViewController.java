@@ -31,9 +31,6 @@ public class ProfileViewController extends HttpServlet {
 			Review r=new Review(rating,description,author);
 			
 			String uk =request.getParameter("userKey");
-			
-			if(uk==null)
-				System.out.println("HOUSTON, WE HAVE A PROBLEM HERE!");
 
 			DBManager db=DBManager.getInstance();
 			ArrayList<Review> rs=db.getUserReviewTable().get(uk);

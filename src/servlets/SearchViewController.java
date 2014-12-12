@@ -47,6 +47,8 @@ public class SearchViewController extends HttpServlet {
     	  am[Flat.INCLUDES_WASHER_DRYER]=(washer!=null)?(washer.equals("included")):(false);
     	  
     	  for(Flat f:flat_list){
+    		  System.out.println("-------------------------------------");
+    	  	  System.out.println(f.getAddress());
     		  ok=true;
     		  ok=ok && addressFilter(f,request.getParameter("address"));
         	  ok=ok && priceFilter(f,Integer.parseInt(request.getParameter("min")),
@@ -89,6 +91,7 @@ public class SearchViewController extends HttpServlet {
    }
 
 private boolean averageRatingFilter(Flat f,int min) {
+	System.out.println("RATING FILTER: "+(f.getRating()>=min));
 	return f.getRating()>=min;
 }
 
@@ -100,18 +103,19 @@ private boolean amenitiesFilter(Flat f,boolean[]as) {
 		
 		ok= ok && f.hasAmenity(i)==as[i];
 	}
-	System.out.println("FILTER: "+ok);
+	System.out.println("AMENITY FILTER: "+ok);
 	return ok;
 }
 
 private boolean priceFilter(Flat f,int min,int max) {
+	System.out.println("PRICE FILTER"+(f.getPrice()>=min && f.getPrice()<=max));
 	return f.getPrice()>=min && f.getPrice()<=max;
 }
 
 private boolean addressFilter(Flat f,String addr) {
-	//System.out.println("Flat address: "+f.getAddress());
-	//System.out.println("Query address: "+addr);
-	//System.out.println("FILTER: "+((addr!="")?(f.getAddress().contains(addr)):(true)));
+	System.out.println("Flat address: "+f.getAddress());
+	System.out.println("Query address: "+addr);
+	System.out.println("ADDR FILTER: "+((addr!="")?(f.getAddress().contains(addr)):(true)));
 	return (addr!="")?(f.getAddress().contains(addr)):(true);
 }
 
